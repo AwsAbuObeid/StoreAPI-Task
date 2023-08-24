@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+storeAPI,com.assessment.storeAPI.model,ValidationErrorResponse,0,24,0,0,0,5,0,7,0,7
+storeAPI,com.assessment.storeAPI.model,Bill,11,35,0,0,1,6,3,7,3,7
+storeAPI,com.assessment.storeAPI.model,BillResponse,0,36,0,0,0,6,0,8,0,8
+storeAPI,com.assessment.storeAPI.services.impl,DiscountServiceImpl,0,95,0,4,0,22,0,5,0,3
+storeAPI,com.assessment.storeAPI.strategy.impl,RegularDiscountStrategy,0,9,0,0,0,3,0,3,0,3
+storeAPI,com.assessment.storeAPI.strategy.impl,EmployeeDiscountStrategy,0,9,0,0,0,3,0,3,0,3
+storeAPI,com.assessment.storeAPI.strategy.impl,SavingsDiscountStrategy,0,13,0,0,0,3,0,3,0,3
+storeAPI,com.assessment.storeAPI.strategy.impl,DiscountContextImpl,20,77,4,6,2,13,4,6,0,5
+storeAPI,com.assessment.storeAPI,StoreApiApplication,8,0,0,0,3,0,2,0,2,0
+storeAPI,com.assessment.storeAPI.enums,ErrorType,0,21,0,0,0,2,0,1,0,1
+storeAPI,com.assessment.storeAPI.enums,CustomerType,0,28,0,0,0,7,0,3,0,3
+storeAPI,com.assessment.storeAPI.controller,BillsController,0,50,0,4,0,15,0,5,0,3
+storeAPI,com.assessment.storeAPI.util,BillUtil,3,31,0,8,1,4,1,5,1,1

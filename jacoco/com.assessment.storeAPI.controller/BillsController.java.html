@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BillsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">storeAPI</a> &gt; <a href="index.source.html" class="el_package">com.assessment.storeAPI.controller</a> &gt; <span class="el_source">BillsController.java</span></div><h1>BillsController.java</h1><pre class="source lang-java linenums">package com.assessment.storeAPI.controller;
+
+import com.assessment.storeAPI.enums.ErrorType;
+import com.assessment.storeAPI.model.Bill;
+import com.assessment.storeAPI.model.BillResponse;
+import com.assessment.storeAPI.model.ValidationErrorResponse;
+import com.assessment.storeAPI.services.DiscountService;
+import com.fasterxml.jackson.core.JsonParseException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+
+
+@RestController
+@RequestMapping(&quot;/api/v1/bills&quot;)
+public class BillsController {
+
+    private final DiscountService discountService;
+<span class="fc" id="L23">    public BillsController(DiscountService discountService) {</span>
+<span class="fc" id="L24">        this.discountService = discountService;</span>
+<span class="fc" id="L25">    }</span>
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(value = &quot;/payable&quot;,produces = &quot;application/json&quot;)
+    public BillResponse calculate(@RequestBody Bill bill) {
+<span class="fc" id="L30">        return discountService.calculateDiscounts(bill);</span>
+    }
+
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler
+    public ValidationErrorResponse handleRequestException(Exception ex) {
+        ErrorType errorType;
+        String message;
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if(ex instanceof IllegalArgumentException) {</span>
+<span class="fc" id="L39">            errorType = ErrorType.VALIDATION_ERROR; message= ex.getMessage();</span>
+        }
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        else if (ex instanceof HttpMessageNotReadableException) {</span>
+<span class="fc" id="L42">            errorType = ErrorType.BAD_REQUEST;      message=ex.getMessage();</span>
+        }
+        else {
+<span class="fc" id="L45">            errorType = ErrorType.INTERNAL_SERVER_ERROR;</span>
+<span class="fc" id="L46">            message=&quot;An unexpected error occurred while processing your request.&quot; ;</span>
+        }
+
+<span class="fc" id="L49">        ValidationErrorResponse validationErrorResponse = new ValidationErrorResponse();</span>
+<span class="fc" id="L50">        validationErrorResponse.setErrorType(errorType);</span>
+<span class="fc" id="L51">        validationErrorResponse.setErrorMessage(message);</span>
+<span class="fc" id="L52">        validationErrorResponse.setTimeStamp(Timestamp.from(Instant.now()).toString());</span>
+<span class="fc" id="L53">        return validationErrorResponse;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
