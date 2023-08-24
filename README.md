@@ -13,7 +13,7 @@ This project provides a Spring Boot-based API for managing bills and calculating
 The main controller in this project is `BillsController`, which handles HTTP requests related to bill calculations and discounts. The following endpoints are available:
 
 - `POST /api/v1/bills/payable`: Calculates discounts and payable amount for a given bill.
-
+ 
 ### Calculate Payable Amount
 
 Calculate the payable amount for a bill with applied discounts.
