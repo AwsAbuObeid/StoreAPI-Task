@@ -4,6 +4,7 @@ import com.assessment.storeAPI.model.Bill;
 import com.assessment.storeAPI.enums.CustomerType;
 import com.assessment.storeAPI.strategy.DiscountContext;
 import com.assessment.storeAPI.strategy.DiscountStrategy;
+import com.assessment.storeAPI.util.BillUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
