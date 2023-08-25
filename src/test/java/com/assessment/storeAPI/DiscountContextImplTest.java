@@ -36,7 +36,7 @@ class DiscountContextImplTest {
 
     @Test
     void calculateDiscount_withEmployeeCustomerType() {
-        Bill bill = new Bill("123", "TestBill", 100.0, CustomerType.EMPLOYEE);
+        Bill bill = new Bill("123", "TestBillName", 100.0, CustomerType.EMPLOYEE);
         when(employeeDiscountStrategy.calculateDiscount(anyDouble())).thenReturn(30.0);
         
         double result = discountContext.calculateDiscount(bill);
@@ -48,7 +48,7 @@ class DiscountContextImplTest {
 
     @Test
     void calculateDiscount_withRegularCustomerType() {
-        Bill bill = new Bill("456", "TestBill", 150.0, CustomerType.REGULAR);
+        Bill bill = new Bill("456", "TestBillName", 150.0, CustomerType.REGULAR);
         when(regularDiscountStrategy.calculateDiscount(anyDouble())).thenReturn(15.0);
         
         double result = discountContext.calculateDiscount(bill);
@@ -60,7 +60,7 @@ class DiscountContextImplTest {
 
     @Test
     void calculateDiscount_withNullBill() {
-        Bill bill = new Bill("789", "TestBill", 200.0, null);
+        Bill bill = new Bill("789", "TestBillName", 200.0, null);
         
         assertThrows(IllegalArgumentException.class, () -> discountContext.calculateDiscount(null));
         
@@ -69,7 +69,7 @@ class DiscountContextImplTest {
     }
     @Test
     void getDiscountId_withNullCustomerType() {
-        Bill bill = new Bill("123", "TestBill", 100.0, null);
+        Bill bill = new Bill("123", "TestBillName", 100.0, null);
         assertNull(discountContext.getDiscountId(bill));
     }
 
