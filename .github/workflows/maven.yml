@@ -16,33 +16,37 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          path: ./  # Check out the repository in the root directory
+      
       - name: Set up JDK 1.8
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v2
         with:
           java-version: '8'
-          distribution: 'temurin'
-          cache: maven
+          distribution: 'adopt'
+      
       - name: Build with Maven
-        run:  mvn clean verify
+        run: mvn clean verify
         
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
-            context: .  
-            file: Dockerfile  
-            push: false  
-            tags: aasaleh/StoreAPI  
+          context: .
+          file: Dockerfile
+          push: false
+          tags: aasaleh/StoreAPI
           
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-            
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
       - name: Push Docker image to Docker Hub
         run: docker push aasaleh/StoreAPI
+
