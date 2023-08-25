@@ -59,6 +59,13 @@ Represents a response for validation errors.
 2. Clone this repository and navigate to the project root directory.
 3. Build the project using `./mvnw clean package` command.
 4. Run the application using `./mvnw spring-boot:run` command.
+5. Access the API on port 8080.
+   
+## Running Docker image
+
+1. use command `docker pull awssaleh/store-api:latest` to get the image from docker hub. 
+2. use command `docker run -p 8080:8080 --name store-api awssaleh/store-api` 
+3. Access the API on port 8080.
 
 ## Generating Coverage Reports
 
@@ -72,3 +79,4 @@ Represents a response for validation errors.
 4. Strategy design pattern was used, as it seemed appropriate and allows for easy future modification and expansion.
 5. As i worked within a time crunch please excuse the few corners that were cut during the development.
 6. A UML diargram is uncluded in the repo with the name UML.jpg.
+7. Even though the deadline for the task was 24/8 , please note that i did some modifcations on the repo a day after , fixing some bugs in the pipline.
