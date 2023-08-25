@@ -71,3 +71,4 @@ Represents a response for validation errors.
 3. No database was used, as it was not mentioned or hinted at in the assessment report "Technology" section.
 4. Strategy design pattern was used, as it seemed appropriate and allows for easy future modification and expansion.
 5. As i worked within a time crunch please excuse the few corners that were cut during the development.
+6. A UML diargram is uncluded in the repo with the name UML.jpg.
