@@ -31,7 +31,7 @@ jobs:
           context: .
           file: Dockerfile
           push: false
-          tags: aasaleh/StoreAPI
+          tags: aasaleh/store-api
           
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -40,4 +40,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: Push Docker image to Docker Hub
-        run: docker push aasaleh/StoreAPI
+        run: docker push aasaleh/store-api
