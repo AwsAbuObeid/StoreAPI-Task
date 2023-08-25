@@ -21,16 +21,14 @@ public class DiscountContextImpl implements DiscountContext {
     }
     @Override
     public double calculateDiscount(Bill bill) {
-        if(bill==null) throw new IllegalArgumentException("Bill cannot be null");
-        if(bill.getAmount() < 0 )
-            throw new IllegalArgumentException("Amount cannot be less than 0!");
+        BillUtil.validateBill(bill);
         if (bill.getCustomerType()==null) return 0.0;
         return strategyMap.get(bill.getCustomerType()).calculateDiscount(bill.getAmount());
     }
 
     @Override
     public String getDiscountId(Bill bill) {
-        if(bill==null) throw new IllegalArgumentException("Bill cannot be null");
+        BillUtil.validateBill(bill);
         if (bill.getCustomerType()==null) return null;
         return strategyMap.get(bill.getCustomerType()).getDiscountId();
     }
